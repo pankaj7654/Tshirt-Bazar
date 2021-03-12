@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/5f1756a82f.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <title>Tshirt-Bazar</title>
+
+    <style>
+        .display-5 {
+            font-size: 30px;
+            font-weight: 300;
+        }
+
+        .baseBlock:hover {
+            -webkit-transform: translate(0, -1px);
+            -moz-transform: translate(0, -1px);
+            -ms-transform: translate(0, -1px);
+            -o-transform: translate(0, -1px);
+            transform: translate(0, -1px);
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- navebar start-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark p-2 sticky-top">
+
+
+        <a class="navbar-brand text-white" href="/"><h4><span class="font-weight-bold text-danger">T</span>shirt-<span class="font-weight-bold text-danger">B</span>azar</h4></a>
+        <button class="navbar-toggler border baseBlock" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-white baseBlock" href="/">Home</a>
+                </li>
+
+
+            </ul>
+
+            {% if request.user.is_authenticated %}
+
+
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-white baseBlock" href="/cart"><i class="fas fa-cart-plus h6"></i>
+                        <span class="badge badge-info">{{request.session.cart | length}}</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-white baseBlock" href="/order">Order</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-white baseBlock" href="/logout">Logout<i class="fas fa-sign-out-alt"></i></a>
+                </li>
+            </ul>
+
+            {% else %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-white baseBlock" href="/cart"><i class="fas fa-cart-plus h6"></i>
+                        <span class="badge badge-info">{{request.session.cart | length}}</span></a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link text-white baseBlock" href="/login">Login<i class="fas fa-sign-in-alt"></i></a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link text-white baseBlock" href="/signup">signup</a>
+                </li>
+            </ul>
+
+
+            {% endif %}
+
+        </div>
+
+
+    </nav>
+
+    <!-- navebar end-->
+    {% block content %}
+    {% endblock %}
+
+
+    <footer class="bg-dark text-white text-center text-lg-start mt-3">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Get to Know Us</h5>
+
+                    <p>
+                        This project intends to introduce the user friendly e-commerce web application for various related activities such as we can easy to select any types of  T-shirts(man, woman & kids) using T-shirt filter property and Order it, also we can add to Cart and Checkout or make Payment by Online & Cash On delivery, we can check own Order Items & its Status. 
+                    </p>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Services</h5>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="#!" class="text-white">Membership options</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Tshirt-Bazar Careers</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">feedback/Queries</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Shop with Points</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-0">Let Us Help You</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!" class="text-white">Tshirt-Bazar and COVID-19</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Returns & Replacements</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Tshirt-Bazar Assistant</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Contact Us</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Complain</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Live Chat</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="container-fluid">
+            <div class="row p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                <div class="col-lg-7 col-md-7 mb-6 col-mb-0 text-right">
+                    <span class="text-white">Design & Developed by Pankaj Pandit</span>
+                </div>
+                <div class="col-lg-5 col-md-5 mb-6 col-mb-0 text-right rounded-circle h3">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+    </footer>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

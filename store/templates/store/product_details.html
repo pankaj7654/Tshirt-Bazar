@@ -1,0 +1,72 @@
+{% extends "./base.html" %}
+{% load tshirt_tags %}
+{% block content %}
+
+
+<div class="container-fluid animate__animated animate__bounce animate__backInUp">
+    <div class="row">
+        <div class="col-lg col-md col-mb">
+            <div class="p-4 m-3">
+                <div class="w-75 text-center mx-auto">
+                    <img src="{{tshirt.image.url}}" class="img-fluid" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col p-3 m-2">
+            <div class="">
+                <div class="display-4">{{tshirt.name}}</div>
+                <p class="display-5">Brand : {{tshirt.brand |upper}}</p>
+                <hr>
+                <p>Lorem ipsum dolor sit amet,
+                    consectetur adipisicing elit. Reiciendis veritatis
+                    temporibus accusamus blanditiis facere tempore,
+                    ut consectetur dicta laudantium dolores nostrum repellat natus,
+                    cumque autem. Enim dolor commodi eveniet id.
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="">Select Size</label>
+
+                    <div class="row">
+                        {% for size in tshirt.sizevariant_set.all %}
+                        <div class="col-lg-2 col-md-2 col-sm-2 p-1 mt-2 baseBlock">
+                            <a href="/product/{{tshirt.slug}}?size={{size.size}}" 
+                            class="btn border btn-block btn-{% get_active_size_button_class active_size size.size %}">
+                                {{size.size}}
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col mt-3">
+                    <div class="display-5 badge badge-info">
+                        Save {{tshirt.descount}}%
+                    </div>
+                    <div class="display-5">
+                        <span class="text-danger"><del>{{size_price | rupee}}</del></span>
+                        &nbsp;
+                        <span class="display-5">{{sell_price | rupee}}</span> 
+                    </div>
+                </div>
+                <div class="col mt-3">
+                    <div class="">
+                        <a href="/addtocart/{{tshirt.slug}}/{{active_size}}?return_url={{request.get_full_path}}" 
+                        class="btn btn-outline-dark btn-block baseBlock">Add To Cart</a>
+                    </div>
+                    <div class="mt-3">
+                        <a href="/checkout" class="btn btn-outline-dark btn-block baseBlock">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends "./base.html" %}
+
+{% load tshirt_tags %}
+{% load filter_tags %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row mt-2 ">
+        <div class="col-lg-2 col-md-2 col-mb-10 border rounded">
+            <form id="filterForm" action="/" class="list-group">
+                <!--Filter div-->
+                <div class="">
+                    <!--brands-->
+                    <div class="form-group baseBlock">
+                        <label for="brand">Brand</label>
+                        <select onchange="submitForm()" name="brand" class="form-control" id="brand">
+                            <option value="">Select Brands</option>
+                            {% for brand in brands %}
+                            <option {% selected_attr request.GET.brand brand.slug %} value="{{brand.slug}}">
+                                {{brand.title}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!--Neck Types-->
+                    <div class="form-group baseBlock">
+                        <label for="neckType">Neck Type</label>
+                        <select onchange="submitForm()" name="necktype" class="form-control" id="neckTypes">
+                            <option value="">Select Neck</option>
+                            {% for item in neckTypes %}
+                            <option {% selected_attr request.GET.necktype item.slug %} value="{{item.slug}}">
+                                {{item.title}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!--Colors-->
+                    <div class="form-group baseBlock">
+                        <label for="colors">Colors</label>
+                        <select onchange="submitForm()" name="color" class="form-control" id="colors">
+                            <option value="">Select Colors</option>
+                            {% for item in colors %}
+                            <option {% selected_attr request.GET.color item.slug %} value="{{item.slug}}">{{item.title}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!--Ideal for-->
+                    <div class="form-group baseBlock">
+                        <label for="ideanFor">IdealFor</label>
+                        <select onchange="submitForm()" name="idealfor" class="form-control" id="idealFor">
+                            <option value="">--Select--</option>
+                            {% for item in idealFor %}
+                            <option {% selected_attr request.GET.idealfor item.slug %} value="{{item.slug}}">
+                                {{item.title}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!--Sleevs-->
+                    <div class="form-group baseBlock">
+                        <label for="sleevs">Sleevs</label>
+                        <select onchange="submitForm()" name="sleeve" class="form-control" id="sleevs">
+                            <option value="">Select Sleevs</option>
+                            {% for item in sleeves %}
+                            <option {% selected_attr request.GET.sleeve item.slug %} value="{{item.slug}}">
+                                {{item.title}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+                    <a href="/" class="btn btn-outline-dark btn-block p-1.5 mt-2 baseBlock">Clear</a>
+                </div>
+            </form>
+        </div>
+        <!--Filer end-->
+        
+        <!--products-->
+        <div class="col-sm-10 animate__animated animate__bounce animate__lightSpeedInRight" data-spy="scroll" data-bs-offset="0" class="scrollspy-example" style="height: 500px;overflow-y: scroll;">
+            <div class="row mx-auto">
+
+                {% for tshirt in page_object %}
+
+                <div class="col-xl-4 col-md-6 col-mb-12 mb-3">
+
+                    <div class="card h-100 shadow baseBlock" style="width: 21rem; ">
+                        <div class="">
+                            <img class="card-img-top " style="height: 250px;" src="{{tshirt.image.url}}"
+                                alt="Card image cap">
+                        </div>
+
+                        <div class="card-body">
+                            <h6 class="card-title">{{tshirt.name|lower}}({{tshirt.brand |lower}})</h6>
+                            <p class="card-text">{{tshirt.description}}</p>
+                            
+
+                            <span class="text-danger"><del>{% min_price tshirt as result %}
+                                    {{result|rupee}}</del></span>
+
+                            &nbsp;
+                            <span>{% sale_price tshirt as sale_price_result %} {{sale_price_result | rupee}}</span>
+                            <span class="float-right badge-info">Save{{tshirt.descount}}%</span>
+                            <hr class="bg-dark ">
+                            <div>
+                                <div><a href="/product/{{tshirt.slug}}"
+                                        class="btn btn-outline-dark btn-block mt-1 baseBlock">See More</a></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+
+            <!--Pagination-->
+            <nav aria-label="Page navigation" class="mt-2">
+                <ul class="pagination justify-content-md-end">
+                    {% if page_object.has_previous %}
+                        <li class="page-item"><a class="page-link bg-dark text-light baseBlock" href="?{{pageurl}}{{pageurl}}1">&laquo; first</a></li>
+                        <li class="page-item"><a class="page-link bg-dark text-light baseBlock" href="?{{pageurl}}{{ page_object.previous_page_number }}">previous</a></li>
+                        {% endif %}
+                        <li class="page-item">
+                            <a href="" class="page-link">Page {{ page_object.number }} of {{ page_object.paginator.num_pages }}.</a>
+                        </li>
+                        {% if page_object.has_next %}
+                        <li class="page-item"><a class="page-link bg-dark text-light baseBlock" href="?{{pageurl}}{{ page_object.next_page_number }}">next</a></li>
+                        <li class="page-item"><a class="page-link bg-dark text-light baseBlock" href="?{{pageurl}}{{ page_object.paginator.num_pages }}">last &raquo;</a></li>
+                        {% endif %}
+                  </ul>
+              </nav>
+            <!--end pagination-->
+
+        </div>
+    </div>
+</div>
+
+
+
+<footer class="bg-light text-center text-lg-start">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <form action="">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-md-3 col-12 mb-4 mb-md-0">
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-5 col-12 mb-4 mb-md-0">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="form5Example2" placeholder="Email address" class="form-control baseBlock" />
+                    </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-auto mb-4 mb-md-0">
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-dark mb-4 text-white baseBlock">Subscribe</button>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </form>
+    </div>
+    <!-- Grid container -->
+</footer>
+
+
+<script>
+    function submitForm() {
+        document.getElementById('filterForm').submit()
+    }
+</script>
+
+
+
+{% endblock %}
+
+
+
