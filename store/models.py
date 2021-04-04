@@ -118,4 +118,10 @@ class Payment(models.Model):
     payment_request_id = models.CharField(max_length=60, unique=True , null=False)
 
     
-  
+
+
+class Subscribe(models.Model):
+    email = models.EmailField(max_length=100)
+
+    def __str__(self):
+        return self.email

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from store.views import show_product,checkout,add_to_cart,home,cart,order,login,logout,signup
+from store.views import show_product,checkout,add_to_cart,home,cart,order,login,logout,signup,buynow,subscribe
 from store.views import validatePayment
 
 urlpatterns = [
@@ -11,7 +11,9 @@ urlpatterns = [
     path('logout/', logout),
     path('signup/', signup),
     path('checkout/', checkout),
+    path('buynow/', buynow),
     path('product/<str:slug>', show_product),
     path('addtocart/<str:slug>/<str:active_size>', add_to_cart),
     path('validate_payment', validatePayment),
+    path('subscribe/' , subscribe),
 ]

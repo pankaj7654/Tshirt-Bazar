@@ -1,5 +1,5 @@
 from django.contrib import admin
-from store.models import Tshirt ,Payment , Order , OrderItem , Brand , Color , IdealFor , NeckType , Occasion , Sleeve, SizeVariant , Cart
+from store.models import Tshirt ,Payment , Order , OrderItem , Brand , Color , IdealFor , NeckType , Occasion , Sleeve, SizeVariant , Cart , Subscribe
 from django.utils.html import format_html
 # Register your models here.
 
@@ -92,6 +92,12 @@ class OrderConfiguration(admin.ModelAdmin):
 
 
 
+
+class SubscribeModel(admin.ModelAdmin):
+    email = ['email']
+
+
+
 admin.site.register(Tshirt, TshirtConfiguration)
 admin.site.register(Brand)
 admin.site.register(Color)
@@ -103,3 +109,4 @@ admin.site.register(Cart , CartConfiguration)
 admin.site.register(Payment)
 admin.site.register(Order , OrderConfiguration)
 admin.site.register(OrderItem)
+admin.site.register(Subscribe , SubscribeModel)

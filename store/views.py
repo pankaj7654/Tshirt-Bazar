@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse , redirect
 from store.forms.authforms import CustomerCreationForm , CustomerAuthForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate , login as loginUser
-from store.models import Tshirt , SizeVariant , Cart , Order , OrderItem , Payment , Occasion , Brand , Color , IdealFor , NeckType , Sleeve
+from store.models import Tshirt , SizeVariant , Cart , Order , OrderItem , Payment , Occasion , Brand , Color , IdealFor , NeckType , Sleeve , Subscribe
 
 from django.contrib.auth.decorators import login_required
 from store.forms.checkout_form import CheckoutForm
@@ -328,6 +328,7 @@ def checkout(request):
             print(shipping_address , phone , payment_method , total)
             
             order = Order()
+            print("EEEEEEEEEEEEEEEEEEEEEEE")
             order.shipping_address = shipping_address
             order.phone = phone
             order.payment_method = payment_method
@@ -358,7 +359,7 @@ def checkout(request):
             redirect_url="http://localhost:8000/validate_payment"
             )
 
-            #print(response['payment_request'])
+            #print(response['payment_request'],['id'])
             payment_request_id = response['payment_request']['id']
             url = response['payment_request']['longurl']
 
@@ -372,6 +373,26 @@ def checkout(request):
 
 
 
+
+
+
+# Buy Now product
+@login_required(login_url = '/login/')
+def buynow(request):
+    #get request
+    if request.method == 'GET':
+        form = CheckoutForm()
+        print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQq")
+        return render(request,'store/checkout.html', {'form' : form})
+    else:
+        # post request
+        pass
+
+
+
+
+
+# Check Payment Validation
 def validatePayment(request):
     user = None
     if request.user.is_authenticated:
@@ -407,3 +428,18 @@ def validatePayment(request):
     else:
         return render(request , 'store/payment_failed.html')
         #return error page
+
+
+
+
+def subscribe(request):
+    email = request.POST.get('email')
+    print(email,"DDDDDDDDDDDDDDDDDDDDDDDDDDD")
+    if email:
+        email = Subscribe(email=email)
+        result = email.save()
+        print(email,result,"JJJJJJJJJJJJJJJJJJJJJ")
+        return redirect('homepage')
+    else:
+        print("AAAAAAAAAAAAAAAAAAAAAAAAA")
+        return redirect('homepage')
