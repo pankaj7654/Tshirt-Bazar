@@ -434,12 +434,9 @@ def validatePayment(request):
 
 def subscribe(request):
     email = request.POST.get('email')
-    print(email,"DDDDDDDDDDDDDDDDDDDDDDDDDDD")
     if email:
         email = Subscribe(email=email)
         result = email.save()
-        print(email,result,"JJJJJJJJJJJJJJJJJJJJJ")
         return redirect('homepage')
     else:
-        print("AAAAAAAAAAAAAAAAAAAAAAAAA")
         return redirect('homepage')

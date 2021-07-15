@@ -25,7 +25,9 @@ SECRET_KEY = 'm^s*^67q19%%1cxoz60dg#o^p1_i8wcxzvh5ctvhpytagy-xn^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+	't-shirtbazar.herokuapp.com'
+]
 
 
 # Application definition
@@ -45,6 +47,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+	'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -124,6 +127,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/images/uploaded/'
 MEDIA_ROOT = BASE_DIR
+STATIC_ROOT = BASE_DIR / 'static'
 
 API_KEY = 'test_1a27dbe7c32079fe70e91d6fd9a'
 AUTH_TOKEN = 'test_436036c4a50adb8b5bd2462dd65'
