@@ -26,7 +26,7 @@ SECRET_KEY = 'm^s*^67q19%%1cxoz60dg#o^p1_i8wcxzvh5ctvhpytagy-xn^'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-	't-shirtbazar.herokuapp.com'
+	'tshirt-bazar.herokuapp.com'
 ]
 
 
