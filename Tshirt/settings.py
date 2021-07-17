@@ -25,9 +25,7 @@ SECRET_KEY = 'm^s*^67q19%%1cxoz60dg#o^p1_i8wcxzvh5ctvhpytagy-xn^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-	'tshirt-bazar.herokuapp.com'
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -127,7 +125,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/images/uploaded/'
 MEDIA_ROOT = BASE_DIR
-STATIC_ROOT = BASE_DIR / 'static'
 
 API_KEY = 'test_1a27dbe7c32079fe70e91d6fd9a'
 AUTH_TOKEN = 'test_436036c4a50adb8b5bd2462dd65'
